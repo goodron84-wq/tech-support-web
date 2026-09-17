@@ -1,0 +1,87 @@
+/* --- СТИЛИ ИЗ activity_consumption_calc.xml --- */
+
+.consumption-title {
+    font-size: 18px;
+    color: #0F172A;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Строки параметров, аналогично экрану ТСП */
+.consumption-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+    width: 100%;
+}
+
+.consumption-row label {
+    flex: 6;
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* Белые поля ввода */
+.consumption-row input {
+    flex: 4;
+    width: 40%;
+    height: 46px;
+    box-sizing: border-box;
+    margin-bottom: 0 !important;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Нежно-фиолетовая кнопка РАССЧИТАТЬ РАСХОД */
+.calculate-btn-purple {
+    width: 100% !important;
+    height: 54px !important;
+    background-color: #E9D5FF !important; /* Цвет из backgroundTint XML */
+    color: #6B21A8 !important;            /* Цвет текста из XML */
+    border: none !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(107, 33, 168, 0.1);
+    transition: background-color 0.2s;
+    margin-bottom: 24px;
+}
+.calculate-btn-purple:active {
+    background-color: #d8b4fe !important;
+}
+
+/* Карточка вывода результатов (CardView) */
+.consumption-result-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.consumption-result-card label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1E293B;
+}
+
+.consumption-result-card span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #6B21A8; /* Тёмно-фиолетовый финал */
+}

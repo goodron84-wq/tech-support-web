@@ -1,0 +1,190 @@
+/* --- СТИЛИ ИЗ activity_solid_calc.xml --- */
+
+/* Стили заголовка вкладки */
+.solid-title {
+    font-size: 18px;
+    color: #0F172A;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Кастомизация полей выбора под Android стиль */
+.card select,
+.card input[type="text"] {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 12px !important;
+    margin-bottom: 16px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+    color: #000000 !important;
+}
+
+/* Строка с подсказкой диапазона (hint) */
+.solid-range-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.solid-range-container label {
+    margin-bottom: 0;
+}
+
+/* Яркая зеленая кнопка расчета (как в эмуляторе) */
+.calculate-btn-green {
+    width: 100% !important;
+    height: 50px !important;
+    background-color: #32cd32 !important;
+    /* Зеленый цвет кнопки меню */
+    color: #ffffff !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(50, 205, 50, 0.2);
+    transition: background-color 0.2s;
+}
+
+.calculate-btn-green:active {
+    background-color: #2ebd2e !important;
+}
+
+/* Плашка вывода итоговых процентов */
+.solid-status-box {
+    background-color: #76ff03 !important;
+    /* Насыщенный салатовый из Android-кода */
+    color: #000000 !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    box-sizing: border-box !important;
+}
+
+.solid-result-line {
+    margin-bottom: 6px;
+}
+
+.solid-result-line b {
+    font-size: 15px;
+}
+
+.solid-result-spacer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+/* --- СТИЛИ ДЛЯ АВТОДОПОЛНЕНИЯ (КАК В ЭМУЛЯТОРЕ) --- */
+
+.custom-dropdown-list {
+    position: absolute;
+    top: 44px;
+    /* Сразу под полем ввода */
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    /* Ограничиваем высоту как в Android */
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    /* Чтобы список перекрывал все элементы снизу */
+    overflow-y: auto;
+    /* Появляется вертикальная прокрутка */
+    box-sizing: border-box;
+    padding: 4px 0;
+}
+
+/* Элемент списка (продукт) */
+.custom-dropdown-item {
+    padding: 10px 14px;
+    font-size: 16px;
+    color: #0F172A;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.1s;
+}
+
+/* Подсветка при наведении мыши */
+.custom-dropdown-item:hover {
+    background-color: #F1F5F9;
+}
+
+/* --- СЕТКА ДЛЯ ЭКРАНА СУХОГО ОСТАТКА ПОД АНДРОИД --- */
+
+.solid-row-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Первый столбец: Название текстовое или Выпадающий список */
+.solid-lbl-main,
+.solid-row-layout select,
+.solid-row-layout .autocomplete-wrapper {
+    flex: 5.5 !important;
+    width: 50% !important;
+}
+
+.solid-lbl-main {
+    font-size: 15px;
+    color: #334155;
+    text-align: left;
+    padding-left: 4px;
+}
+
+.solid-row-layout select,
+#solid-product-select {
+    height: 44px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    padding: 0 8px !important;
+    font-size: 15px !important;
+    box-sizing: border-box !important;
+    background-color: #ffffff !important;
+    margin-bottom: 0 !important;
+}
+
+/* Второй столбец: Поля ввода процентов количества */
+.solid-row-layout input[type="number"] {
+    flex: 2 !important;
+    width: 20% !important;
+    height: 44px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    box-sizing: border-box !important;
+    margin-bottom: 0 !important;
+}
+
+/* Третий столбец: Надписи диапазонов справа */
+.solid-lbl-range {
+    flex: 2.5 !important;
+    width: 25% !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #2563EB !important;
+    /* Синий цвет как в Андроид */
+    text-align: center !important;
+}
+
+/* Исправление позиции выпадающего меню поиска под новым полем */
+.custom-dropdown-list {
+    top: 44px !important;
+}

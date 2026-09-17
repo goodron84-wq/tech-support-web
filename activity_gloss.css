@@ -1,0 +1,85 @@
+/* --- СТИЛИ ИЗ activity_gloss.xml --- */
+
+.header-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-top: 8px;
+}
+
+.gloss-title {
+    font-size: 18px;
+    color: #0F172A;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Кнопка НАЗАД (btnBack) */
+.back-text-btn {
+    background-color: #E2E8F0 !important;
+    color: #64748B !important;
+    border: none;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Поля ввода (createStyledEditText) */
+.card input[type="number"] {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 16px !important;
+    margin-bottom: 16px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+    color: #000000 !important;
+}
+.card input[type="number"]:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Кнопка расчета (btnCalculate) */
+.calculate-btn-blue {
+    width: 100% !important;
+    height: 50px !important;
+    background-color: #2196F3 !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase;
+}
+
+/* Плашка результата (resultCard) */
+.android-status-box {
+    background-color: #ADFF2F !important; /* #ADFF2F из Java-кода */
+    color: #334155 !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    font-weight: bold !important;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px !important;
+}
+
+/* Плашка при ошибке (showError) */
+.android-status-box.error-box {
+    background-color: #FEE2E2 !important;
+    color: #991B1B !important;
+}
+
+/* Контейнер графика (chartCard) */
+.chart-card-holder canvas {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}

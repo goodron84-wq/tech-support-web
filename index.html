@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техническая поддержка</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="activity_gloss.css">
+    <link rel="stylesheet" href="activity_solid_calc.css">
+    <link rel="stylesheet" href="activity_thickness_calc.css">
+    <link rel="stylesheet" href="activity_price_calc.css">
+    <link rel="stylesheet" href="activity_consumption_calc.css">
+
+</head>
+
+<body>
+
+    <!-- 1. ГЛАВНОЕ МЕНЮ -->
+    <div id="screen-main" class="screen active">
+        <div class="menu-grid">
+            <button class="menu-btn btn-gloss" onclick="switchScreen('screen-gloss')">Расчет блеска</button>
+            <button class="menu-btn btn-solid" onclick="switchScreen('screen-solid')">Сухой остаток</button>
+            <button class="menu-btn btn-thickness"
+                onclick="switchScreen('screen-thickness'); initThicknessScreen();">Расчет толщины слоя</button>
+            <button class="menu-btn btn-price" onclick="switchScreen('screen-price'); initPriceScreen();">Расчет
+                стоимости</button>
+            <button class="menu-btn btn-consumption" onclick="switchScreen('screen-consumption')">Расчет
+                расхода</button>
+        </div>
+    </div> <!-- Этот тег закрывает только главное меню -->
+
+    <!-- 2. ЭКРАН: Расчет блеска смеси лаков -->
+    <div id="screen-gloss" class="screen">
+        <div class="android-app-container">
+
+            <!-- Шапка экрана с кнопкой НАЗАД -->
+            <div class="header-inline">
+                <h2 class="gloss-title">Расчет блеска смеси лаков</h2>
+                <button class="back-text-btn" onclick="switchScreen('screen-main')">НАЗАД</button>
+            </div>
+
+            <!-- Карточка ввода данных -->
+            <div class="card">
+                <input type="number" id="gloss-entry-one" placeholder="Блеск Лака 1 (от 5 до 90)" min="5" max="90"
+                    step="any">
+                <input type="number" id="gloss-entry-two" placeholder="Блеск Лака 2 (от 5 до 90)" min="5" max="90"
+                    step="any">
+                <input type="number" id="gloss-entry-target" placeholder="Целевой блеск смеси" min="5" max="90"
+                    step="any">
+            </div>
+
+            <!-- Кнопка расчета -->
+            <button class="calculate-btn-blue" onclick="calculateGloss()">РАССЧИТАТЬ ПРОПОРЦИИ</button>
+
+            <!-- Зеленая/Красная плашка результатов -->
+            <div id="gloss-result-box" class="android-status-box">
+                <div id="gloss-result-text">Введите данные и нажмите расчет</div>
+            </div>
+
+            <!-- Карточка для графика Canvas -->
+            <div id="gloss-chart-card" class="card chart-card-holder" style="display: none;">
+                <canvas id="glossCanvas" width="400" height="240"></canvas>
+            </div>
+
+        </div>
+    </div> <!-- Этот тег закрывает screen-gloss -->
+
+</html>
+</div>
+
+</html>
+
+<!-- 3. ЭКРАН: Сухой остаток смеси -->
+<div id="screen-solid" class="screen">
+    <div class="android-app-container">
+
+        <!-- Шапка экрана -->
+        <div class="header-inline">
+            <h2 class="solid-title">Сухой остаток смеси</h2>
+            <button class="back-text-btn" onclick="switchScreen('screen-main')">НАЗАД</button>
+        </div>
+
+        <!-- Карточка выбора продуктов -->
+        <div class="card">
+                    <!-- Строка 1: Название продукта (Часть А) -->
+                    <div class="solid-row-layout">
+                        <span class="solid-lbl-main">Название</span>
+                        <div class="autocomplete-wrapper" style="position: relative; width: 40%;">
+                            <input type="text" id="solid-product-select" placeholder="Выбери..." oninput="filterSolidProducts()" onclick="toggleSolidDropdown()">
+                            <div id="solid-custom-dropdown" class="custom-dropdown-list" style="display: none;"></div>
+                        </div>
+                        <span class="solid-lbl-range">База</span>
+                    </div>
+
+                    <!-- Строка 2: Отвердитель (Часть В) -->
+                    <div class="solid-row-layout">
+                        <select id="solid-hardener-select" onchange="onSolidHardenerChanged()"></select>
+                        <input type="number" id="solid-hardener-pct" step="any" placeholder="0">
+                        <span id="solid-hardener-hint" class="solid-lbl-range">50-50%</span>
+                    </div>
+
+                    <!-- Строка 3: Разбавитель -->
+                    <div class="solid-row-layout">
+                        <select id="solid-diluent-select" onchange="onSolidDiluentChanged()"></select>
+                        <input type="number" id="solid-diluent-pct" step="any" placeholder="0">
+                        <span id="solid-diluent-hint" class="solid-lbl-range">25-30%</span>
+                    </div>
+                </div>
+
+        <!-- Кнопка расчета -->
+        <button class="calculate-btn-green" onclick="calculateSolid()">РАССЧИТАТЬ СУХОЙ ОСТАТОК СМЕСИ</button>
+
+        <!-- Плашка результатов -->
+        <div id="solid-result" class="solid-status-box" style="display: none;"></div>
+
+    </div>
+</div>
+
+<!-- 4. ЭКРАН: Расчет толщины слоя ЛКМ -->
+<div id="screen-thickness" class="screen">
+    <div class="android-app-container">
+
+        <!-- Шапка экрана -->
+        <div class="header-inline">
+            <h2 class="thickness-title">Расчет толщины слоя ЛКМ</h2>
+            <button class="back-text-btn" onclick="switchScreen('screen-main')">НАЗАД</button>
+        </div>
+
+        <!-- Основной контейнер параметров слоя -->
+        <div class="card">
+            <div class="thickness-row">
+                <label>Параметры слоя</label>
+            </div>
+
+            <!-- Строка 1: Сухой остаток смеси -->
+            <div class="thickness-row">
+                <label>Сухой остаток смеси с разбавителем, %</label>
+                <input type="number" id="etThicknessSolidContent" placeholder="0.00" step="any">
+            </div>
+
+            <!-- БЛОК 1: РАСЧЕТ ТСП ПО МОКРОМУ СЛОЮ -->
+            <div class="thickness-row">
+                <label>Мокрый слой, мкм</label>
+                <input type="number" id="etWetLayer" placeholder="0" step="any">
+            </div>
+
+            <div class="thickness-row">
+                <label>Толщина сухого слоя, мкм</label>
+                <div id="tvCalculatedDryThickness" class="thickness-output output-blue">0.0</div>
+            </div>
+
+            <!-- ЛИНИЯ-РАЗДЕЛИТЕЛЬ -->
+            <div class="thickness-divider"></div>
+
+            <!-- БЛОК 2: РАСЧЕТ РАСХОДА ПО ТСП -->
+            <div class="thickness-row">
+                <label>Требуемая толщина сухого покрытия, мкм</label>
+                <input type="number" id="etRequiredThickness" placeholder="0" step="any">
+            </div>
+
+            <div class="thickness-row">
+                <label style="font-weight: bold;">Расход, г/кв.м</label>
+                <div id="tvCalculatedConsumption" class="thickness-output output-green">0.0</div>
+            </div>
+        </div>
+
+        <!-- КНОПКА ЗАПУСКА ВСЕХ РАСЧЕТОВ -->
+        <button class="calculate-btn-orange" onclick="performThicknessCalculations()">ВЫПОЛНИТЬ РАСЧЕТ</button>
+
+    </div>
+</div>
+
+<!-- 5. ЭКРАН: Расчет стоимости смеси -->
+<div id="screen-price" class="screen">
+    <div class="android-app-container">
+
+        <!-- Шапка экрана -->
+        <div class="header-inline">
+            <h2 class="price-title">Расчет стоимости смеси</h2>
+            <button class="back-text-btn" onclick="switchScreen('screen-main')">НАЗАД</button>
+        </div>
+
+        <!-- Карточка ввода цен (Таблица) -->
+        <div class="card" style="padding: 12px;">
+            <div class="price-table-row price-table-header">
+                <span style="flex: 5.5;">Компонент</span>
+                <span style="flex: 2.5; text-align: center;">Ед. изм.</span>
+                <span style="flex: 3; text-align: center;">Цена</span>
+            </div>
+
+            <div class="price-table-divider"></div>
+
+            <!-- Строка 1: Часть А -->
+            <div class="price-table-row">
+                <input type="text" id="etNameA" class="price-col-name" placeholder="Часть А">
+                <span id="tvUnitA" class="price-col-unit">р/кг</span>
+                <input type="number" id="etPriceA" class="price-col-value" placeholder="0.00" step="any">
+            </div>
+
+            <!-- Строка 2: Отвердитель -->
+            <div class="price-table-row">
+                <input type="text" id="etNameB" class="price-col-name" placeholder="Отвердитель">
+                <span id="tvUnitB" class="price-col-unit">р/л</span>
+                <input type="number" id="etPriceB" class="price-col-value" placeholder="0.00" step="any">
+            </div>
+
+            <!-- Строка 3: Разбавитель -->
+            <div class="price-table-row">
+                <input type="text" id="etNameThinner" class="price-col-name" placeholder="Разбавитель">
+                <span id="tvUnitThinner" class="price-col-unit">р/л</span>
+                <input type="number" id="etPriceThinner" class="price-col-value" placeholder="0.00" step="any">
+            </div>
+        </div>
+
+        <!-- Кнопка расчета стоимости замеса -->
+        <button class="calculate-btn-green-mix" onclick="calculateTotalMixPrice()">РАССЧИТАТЬ СТОИМОСТЬ СМЕСИ</button>
+
+        <!-- Зеленая карточка итогов жидкой смеси -->
+        <div class="price-status-box-green">
+            <div class="price-result-row">
+                <label>Цена готовой смеси, р/кг:</label>
+                <span id="tvPricePerKg">—</span>
+            </div>
+            <div class="price-result-row">
+                <label>Цена готовой смеси, р/л:</label>
+                <span id="tvPricePerLiter">—</span>
+            </div>
+            <div class="price-box-divider"></div>
+            <div id="tvPriceBreakdown" class="price-breakdown-text">Заполните цены компонентов и нажмите расчет</div>
+        </div>
+
+        <!-- Карточка параметров нанесения -->
+        <div class="card" style="padding: 12px;">
+            <div class="price-param-row">
+                <label>Коэффициент переноса, %</label>
+                <input type="number" id="etTransferEfficiency" value="35" step="any">
+            </div>
+            <div class="price-param-divider"></div>
+            <div class="price-param-row">
+                <label>Расход материала, г/кв.м</label>
+                <input type="number" id="etManualConsumption" value="150" step="any">
+            </div>
+        </div>
+
+        <!-- Голубая карточка итоговой стоимости кв. метра покрытия -->
+        <div class="price-status-box-blue">
+            <label>Цена покрытия, р/кв.м:</label>
+            <span id="tvPricePerSqMeter">—</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- 6. ЭКРАН: Расчет расхода ЛКМ -->
+<div id="screen-consumption" class="screen">
+    <div class="android-app-container">
+
+        <!-- Шапка экрана -->
+        <div class="header-inline">
+            <h2 class="consumption-title">Расчет расхода ЛКМ</h2>
+            <button class="back-text-btn" onclick="switchScreen('screen-main')">НАЗАД</button>
+        </div>
+
+        <!-- Основной контейнер параметров -->
+        <div class="card">
+            <!-- Строка 1: Площадь детали -->
+            <div class="consumption-row">
+                <label>Площадь детали, кв.м:</label>
+                <input type="number" id="etArea" placeholder="0.0" step="any">
+            </div>
+
+            <!-- Строка 2: Процент переноса -->
+            <div class="consumption-row">
+                <label>Процент переноса, %:</label>
+                <input type="number" id="etTransferEfficiencyConsumption" placeholder="100" step="any">
+            </div>
+
+            <!-- Строка 3: Вес ЛКМ на детали -->
+            <div class="consumption-row">
+                <label>Вес ЛКМ на детали, г:</label>
+                <input type="number" id="etWeightOnDetail" placeholder="0.0" step="any">
+            </div>
+        </div>
+
+        <!-- Фиолетовая кнопка запуска расчета -->
+        <button class="calculate-btn-purple" onclick="performConsumptionCalculations()">РАССЧИТАТЬ РАСХОД</button>
+
+        <!-- Результат в виде аккуратной карточки -->
+        <div class="consumption-result-card">
+            <label>Расход ЛКМ:</label>
+            <span id="tvResultConsumption">0.00 г/кв.м</span>
+        </div>
+
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script src="GlossActivity.js"></script>
+<script src="SolidCalcActivity.js"></script>
+<script src="ThicknessCalcActivity.js"></script>
+<script src="PriceCalcActivity.js"></script>
+<script src="ConsumptionCalcActivity.js"></script>
+
+</body>
+
+</html>

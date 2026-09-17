@@ -1,0 +1,330 @@
+:root {
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --primary: #2196F3;
+    --border-radius: 12px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.3s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Шапка */
+.main-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #111;
+}
+
+.main-header p {
+    margin: 4px 0 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Сетка меню — теперь это вертикальный стек */
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Отступы между цветными кнопками */
+    width: 100%;
+    max-width: 400px;
+    /* Чтобы меню не растягивалось слишком сильно на ПК */
+    margin: 0 auto;
+}
+
+/* Обновленный стиль кнопок под Android (длинные, цветные, круглые) */
+.menu-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff !important;
+    /* Белый текст для всех кнопок */
+    border: none;
+    border-radius: 25px;
+    /* Скругление как в эмуляторе */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease, filter 0.2s ease;
+    display: block;
+    /* Убираем flex-иконки, выравниваем как текст */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.menu-btn:active {
+    transform: scale(0.98);
+    /* Легкий эффект нажатия */
+}
+
+.menu-btn:hover {
+    filter: brightness(0.9);
+    /* Потемнение при наведении на ПК */
+}
+
+/* Точные цвета кнопок из Android-эмулятора */
+.btn-gloss {
+    background-color: #1e90ff !important;
+    /* Синий */
+}
+
+.btn-solid {
+    background-color: #32cd32 !important;
+    /* Зеленый */
+}
+
+.btn-thickness {
+    background-color: #ff9f00 !important;
+    /* Оранжевый */
+}
+
+.btn-price {
+    background-color: #d81b60 !important;
+    /* Розовый */
+}
+
+.btn-consumption {
+    background-color: #6a1b9a !important;
+    /* Фиолетовый */
+}
+
+/* Карточки под экраны */
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Кнопка назад */
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.result-box {
+    background: #eef7ff;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    margin-top: 16px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.result-row:last-child {
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.range-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: -12px;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+/* Стили под Android Интерфейс */
+.android-app-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.android-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.android-header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+/* Строки калькулятора */
+.calc-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.labels-row {
+    font-weight: bold;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 4px;
+}
+
+/* Колонки */
+.col-name {
+    flex: 2;
+    min-width: 0;
+}
+
+.col-qty {
+    width: 80px;
+}
+
+.col-range {
+    width: 80px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Кастомизация полей ввода в строке */
+.calc-row select,
+.calc-row input {
+    margin-bottom: 0 !important;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+    height: 38px;
+}
+
+.static-input {
+    background-color: #f0f0f0;
+    color: #666;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.range-badge {
+    color: #2196F3;
+    background: #e3f2fd;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* Кнопка расчета */
+.android-calc-btn {
+    width: 100%;
+    background-color: #4a6572;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 24px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+
+.android-calc-btn:hover {
+    background-color: #344955;
+}
+
+.android-calc-btn:active {
+    transform: scale(0.98);
+}
+
+/* Зеленое поле Android результатов */
+.android-result-box {
+    background-color: #76ff03;
+    color: #000000;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.android-result-line {
+    margin-bottom: 6px;
+}
+
+.android-result-line:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,189 @@
+/* --- СТИЛИ ИЗ activity_price_calc.xml --- */
+
+.price-title {
+    font-size: 18px;
+    color: #0F172A;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Сетка таблицы компонентов (Заголовки и строки) */
+.price-table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Распределение колонок: Компонент(5.5), Ед.изм(2.5), Цена(3) */
+.price-col-name {
+    flex: 5.5 !important;
+    width: 50%;
+    height: 44px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.price-col-unit {
+    flex: 2.5 !important;
+    font-size: 15px;
+    font-weight: bold;
+    color: #0F172A;
+    text-align: center;
+}
+
+.price-col-value {
+    flex: 3 !important;
+    width: 25%;
+    height: 44px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Заголовки таблицы */
+.price-table-header {
+    font-weight: bold;
+    color: #475569;
+    font-size: 14px;
+}
+
+/* Тонкая линия-разделитель в таблице */
+.price-table-divider {
+    height: 1px;
+    background-color: #CBD5E1;
+    margin: 4px 0 12px 0;
+    width: 100%;
+}
+
+/* Кнопка расчета стоимости замеса (Яркий зеленый) */
+.calculate-btn-green-mix {
+    width: 100% !important;
+    height: 54px !important;
+    background-color: #16A34A !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2);
+    margin-bottom: 16px;
+}
+.calculate-btn-green-mix:active {
+    background-color: #15803D !important;
+}
+
+/* Зеленая карточка итогов себестоимости жидкого материала */
+.price-status-box-green {
+    background-color: #ADFF2F !important;
+    color: #334155 !important;
+    padding: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+.price-result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.price-result-row:last-of-type {
+    margin-bottom: 12px;
+}
+
+.price-result-row label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.price-result-row span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0F172A;
+}
+
+.price-box-divider {
+    height: 1px;
+    background-color: #A3E635;
+    margin-bottom: 8px;
+}
+
+.price-breakdown-text {
+    font-size: 14px;
+    color: #475569;
+    text-align: center;
+}
+
+/* Дополнительные параметры нанесения */
+.price-param-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    width: 100%;
+}
+.price-param-row:last-child {
+    margin-bottom: 0;
+}
+
+.price-param-row label {
+    flex: 7;
+    font-size: 14px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.price-param-row input {
+    flex: 3;
+    width: 30%;
+    height: 44px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2563EB;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.price-param-divider {
+    height: 1px;
+    background-color: #E2E8F0;
+    margin-bottom: 12px;
+}
+
+/* Голубая карточка итоговой стоимости квадратного метра покрытия */
+.price-status-box-blue {
+    background-color: #EFF6FF !important;
+    color: #1E3A8A !important;
+    padding: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.price-status-box-blue label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.price-status-box-blue span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1D4ED8;
+}
